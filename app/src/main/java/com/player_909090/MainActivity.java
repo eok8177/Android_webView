@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -74,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+        }
+
+        @Override
+        public void onReceivedError(WebView webView, WebResourceRequest request, WebResourceError error) {
+            String htmlData = "<html><body style=\"display:flex;align-items:center;justify-content:center;background:#12141a;\"><h1 style=\"color:#fff;\">Отсутствует подключение к интернету</h1></body>";
+            webView.loadUrl("about:blank");
+            webView.loadDataWithBaseURL(null,htmlData, "text/html", "UTF-8",null);
+            webView.invalidate();
         }
     }
 
