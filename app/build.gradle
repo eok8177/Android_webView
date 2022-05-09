@@ -10,8 +10,8 @@ android {
         applicationId "com.player_909090"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 8
-        versionName "1.04"
+        versionCode 10
+        versionName "1.06"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

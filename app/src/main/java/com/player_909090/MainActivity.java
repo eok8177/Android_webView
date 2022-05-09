@@ -64,17 +64,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            webView.evaluateJavascript("(function() { window.dispatchEvent(appResumeEvent); })();", new ValueCallback<String>() {
-                @Override
-                public void onReceiveValue(String value) {}
-            });
+            loadWebSite();
+//            webView.evaluateJavascript("(function() { window.dispatchEvent(appResumeEvent); })();", new ValueCallback<String>() {
+//                @Override
+//                public void onReceiveValue(String value) {}
+//            });
         }
     }
 
     public void onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack();
-        } else {
+        if (webView.getUrl().equals("http://909090.me/catalog")) {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle(R.string.app_name);
             builder.setIcon(R.mipmap.ic_launcher);
@@ -92,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                     });
             AlertDialog alert = builder.create();
             alert.show();
+        } else {
+            webView.goBack();
         }
     }
 
